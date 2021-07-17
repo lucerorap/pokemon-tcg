@@ -64,7 +64,11 @@ export default {
   actions: {
     async getList ({ commit, state }) {
       const params = {
-        q: state.filter_params.search + ' ' + state.filter_params.types + ' ' + state.filter_params.rarities + ' ' + state.filter_params.sets,
+        q:
+            (state.filter_params.search !== '' ? state.filter_params.search + ' ' : '') + // Filter by name
+            (state.filter_params.types !== null ? state.filter_params.types + ' ' : '') + // Filter by type
+            (state.filter_params.rarities !== '' ? state.filter_params.rarities + ' ' : '') + // Filter by rarity
+            (state.filter_params.sets), // Filter by set
         page: state.query_params.page,
         pageSize: state.query_params.pageSize
       }
@@ -74,31 +78,35 @@ export default {
       commit('setList', response.data)
     },
     setSearchParam ({ commit, state }, searchParamData) {
-      let searchData = searchParamData.data
       switch (searchParamData.type) {
         case 'search': {
-          commit('setFilterParamSearch', 'name:' + searchData)
+          if (searchParamData.data === '' || searchParamData.data === null) {
+            commit('setFilterParamSearch', '')
+          } else {
+            commit('setFilterParamSearch', 'name:"' + searchParamData.data + '*"')
+          }
           break
         }
         case 'types': {
           if (searchParamData.data === 'allTypes') {
-            searchData = ''
+            return commit('setFilterParamTypes', '')
+          } else {
+            return commit('setFilterParamTypes', 'types:' + searchParamData.data)
           }
-          commit('setFilterParamTypes', 'types:' + searchData)
-          break
         }
         case 'rarities': {
           if (searchParamData.data === 'allRarities') {
-            searchData = ''
+            return commit('setFilterParamRarities', '')
+          } else {
+            return commit('setFilterParamRarities', 'rarity:' + searchParamData.data)
           }
-          commit('setFilterParamRarities', 'rarity:' + searchData)
-          break
         }
         case 'sets': {
           if (searchParamData.data === 'allSets') {
-            searchData = ''
+            return commit('setFilterParamSets', '')
+          } else {
+            return commit('setFilterParamSets', 'set.name:' + searchParamData.data)
           }
-          return commit('setFilterParamSets', 'set.name:' + searchData)
         }
       }
     },

@@ -6,21 +6,21 @@
         <div class="filters">
             Types:
             <select @change="filter($event, 'types')">
-                <option value='allTypes'>Select a type</option>
+                <option value='allTypes'>All</option>
                 <option  v-for="type in types" :key="type">{{ type }}</option>
             </select>
         </div>
         <div class="filters">
             Rarity:
             <select @change="filter($event, 'rarities')">
-                <option value='allRarities'>Select a Rarity</option>
+                <option value='allRarities'>All</option>
                 <option v-for="rarity in rarities" :key="rarity">{{ rarity }}</option>
             </select>
         </div>
         <div class="filters">
             Sets:
             <select @change="filter($event, 'sets')">
-                <option value='allSets'>Select a Set</option>
+                <option value='allSets'>All</option>
                 <option v-for="set in sets" :key="set.id">{{ set.name }}</option>
             </select>
         </div>

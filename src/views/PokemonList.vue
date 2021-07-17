@@ -1,23 +1,29 @@
 <template>
-    <div>
+    <b-container>
         <Filters />
-        <div class="pokemon-list-wrapper">
+        <!-- <div class="pokemon-list-wrapper">
             <div class="card-wrapper" v-if="list !== null">
                 <div v-for="card in list.data" :key="card.id" >
-                    <!-- <h3>{{ card.name }}</h3> -->
+                    <h3>{{ card.name }}</h3>
                     <section  class="demo">
                         <div class="card" :style="{ 'background-image': 'url('+card.images.small+')' }"></div>
                     </section>
                 </div>
             </div>
-            <!-- <section class="cards">
+            <section class="cards">
                 <div class="card charizard"></div>
                 <div class="card pika"></div>
                 <div class="card mew"></div>
-            </section> -->
-        </div>
+            </section>
+        </div> -->
+        <b-row class="demo" v-if="list !== null">
+            <b-col cols="12" sm="3" class="my-1" v-for="card in list.data" :key="card.id">
+                <!-- <h3>{{ card.name }}</h3> -->
+                <div class="card-poke" :style="{ 'background-image': 'url('+card.images.small+')' }"></div>
+            </b-col>
+        </b-row>
         <Pagination />
-    </div>
+    </b-container>
 </template>
 
 <script>
@@ -54,11 +60,11 @@ export default {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
 }
-.card {
+.card-poke {
     --color1: #00e7ff;
     --color2: #ff00e7;
-    width: 20.25vw;
-    height: 28.20vw;
+    width: 18.25vw;
+    height: 25.20vw;
     background-color: #211799;
     /* background-image: url(https://images.pokemontcg.io/swsh3/19_hires.png); */
     background-size: 100%;
@@ -66,37 +72,37 @@ export default {
     background-position: center;
     border-radius: 5% / 3.5%;
     box-shadow: -13px -13px 13px -15px var(--color1), 13px 13px 13px -15px var(--color2), 0 0 4px 2px rgba(255, 255, 255, 0.5), 0 35px 25px -15px rgba(0, 0, 0, 0.3);
-    position: relative;
+    /* position: relative; */
     overflow: hidden;
     /* display: block; */
-    display: inline-block;
-    vertical-align: middle;
+    /* display: inline-block; */
+    /* vertical-align: middle; */
     margin: 20px 10px;
     animation: holoCard 15s ease infinite;
-    transform-origin: center;
+    /* transform-origin: center; */
     z-index: 10;
     overflow: hidden;
     transform: translate3d(0, 0, -1px);
 }
- .card.charizard {
+ .card-poke.charizard {
     --color1: #ff9436;
     --color2: #ff5a90;
 }
- .card.pika {
+ .card-poke.pika {
     --color1: #ffdf35;
     --color2: #65f0ff;
     background-image: url(https://images.pokemontcg.io/swshp/SWSH063_hires.png);
 }
- .card.mew {
+ .card-poke.mew {
     --color1: #eb8bff;
     --color2: #7eeefa;
     background-image: url(https://images.pokemontcg.io/swsh3/69_hires.png);
 }
- .card > span {
+ .card-poke > span {
     position: relative;
     top: 45%;
 }
- .card:before, .card:after {
+ .card-poke:before, .card:after {
     content: "";
     opacity: 0.5;
     mix-blend-mode: screen;
@@ -107,7 +113,7 @@ export default {
     top: 0;
     background-repeat: no-repeat;
 }
- .card:before {
+ .card-poke:before {
     background-position: 50% 50%;
     background-size: 300% 300%;
     animation: holoGradient 15s ease infinite both;
@@ -116,7 +122,7 @@ export default {
     opacity: 0.8;
     filter: brightness(0.75) contrast(1.5);
 }
- .card:after {
+ .card-poke:after {
     opacity: 1;
     background-image: url("https://assets.codepen.io/13471/sparkles.gif");
     background-position: center;
@@ -127,10 +133,10 @@ export default {
     transition: filter 0.5s ease;
     mix-blend-mode: screen;
 }
- .card.active {
+ .card-poke.active {
     animation: none;
 }
- .card.active:before {
+ .card-poke.active:before {
     opacity: 1;
     animation: none;
     transition: none;
@@ -138,38 +144,38 @@ export default {
     opacity: 0.8;
     filter: brightness(0.75) contrast(1.5);
 }
- .card.active:before, .card.active:after {
+ .card-poke.active:before, .card-poke.active:after {
     animation: none;
 }
- .card.active:after {
+ .card-poke.active:after {
     filter: brightness(1.2);
 }
- .demo .card:nth-of-type(1), .demo .card:nth-of-type(2), .demo .card:nth-of-type(3) {
+ .demo .card-poke:nth-of-type(1), .demo .card-poke:nth-of-type(2), .demo .card-poke:nth-of-type(3) {
     /* width: 10vw;
     height: 13.8vw; */
     box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.4), 0 25px 15px -10px rgba(0, 0, 0, 0.5);
     animation: none;
 }
- .demo .card:nth-of-type(1):before, .demo .card:nth-of-type(2):before, .demo .card:nth-of-type(3):before, .demo .card:nth-of-type(1):after, .demo .card:nth-of-type(2):after, .demo .card:nth-of-type(3):after {
+ .demo .card-poke:nth-of-type(1):before, .demo .card-poke:nth-of-type(2):before, .demo .card-poke:nth-of-type(3):before, .demo .card-poke:nth-of-type(1):after, .demo .card-poke:nth-of-type(2):after, .demo .card-poke:nth-of-type(3):after {
     animation: none;
     opacity: 1;
 }
- .demo .card:nth-of-type(1):before, .demo .card:nth-of-type(1):after {
+ .demo .card-poke:nth-of-type(1):before, .demo .card-poke:nth-of-type(1):after {
     display: none;
 }
- .demo .card:nth-of-type(2) {
+ .demo .card-poke:nth-of-type(2) {
     background: none;
 }
- .demo .card:nth-of-type(2):before {
+ .demo .card-poke:nth-of-type(2):before {
     display: none;
 }
- .demo .card:nth-of-type(3) {
+ .demo .card-poke:nth-of-type(3) {
     background: none;
 }
- .demo .card:nth-of-type(3):before {
+ .demo .card-poke:nth-of-type(3):before {
     background-position: center;
 }
- .demo .card:nth-of-type(3):after {
+ .demo .card-poke:nth-of-type(3):after {
     display: none;
 }
  .operator {
@@ -222,18 +228,18 @@ export default {
     }
 }
  .demo, .cards {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
     perspective: 2000px;
-    position: relative;
+    /* position: relative; */
     z-index: 1;
     transform: translate3d(0.1px, 0.1px, 0.1px);
 }
- .cards .card:nth-child(2), .cards .card:nth-child(2):before, .cards .card:nth-child(2):after {
+ .cards .card-poke:nth-child(2), .cards .card-poke:nth-child(2):before, .cards .card-poke:nth-child(2):after {
     animation-delay: 0.2s;
 }
-.cards .card:nth-child(3), .cards .card:nth-child(3):before, .cards .card:nth-child(3):after {
+.cards .card-poke:nth-child(3), .cards .card-poke:nth-child(3):before, .cards .card-poke:nth-child(3):after {
     animation-delay: 0.4s;
 }
 </style>
