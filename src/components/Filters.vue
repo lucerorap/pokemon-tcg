@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="text-align: center !important">
         <div class="filters">
             Search by Name: <input @keyup="searchTimeOut($event, 'search')" type="text" name="search" v-model="search" />
         </div>
