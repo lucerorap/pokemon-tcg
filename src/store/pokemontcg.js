@@ -57,6 +57,9 @@ export default {
     setFilterParamSets (state, response) {
       state.filter_params.sets = response
     },
+    setFilterParam (state, response) {
+      state.filter_params = response
+    },
     setPaginationPage (state, response) {
       state.pagination.page = response
     }
@@ -130,6 +133,9 @@ export default {
     },
     setPaginationPage ({ commit }, page) {
       return commit('setPaginationPage', page)
+    },
+    resetFilterParams ({ commit }, filtersParams) {
+      return commit('setFilterParam', filtersParams)
     }
   }
 }

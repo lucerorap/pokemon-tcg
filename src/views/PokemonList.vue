@@ -36,10 +36,18 @@ export default {
     Filters,
     Pagination
   },
+  methods: {
+  },
   computed: {
     ...mapGetters({ list: 'pokemontcg/list' })
   },
   created () {
+    this.$store.dispatch('pokemontcg/resetFilterParams', {
+      search: '',
+      types: '',
+      rarities: '',
+      sets: ''
+    })
     this.$store.dispatch('pokemontcg/getList')
   }
 }
