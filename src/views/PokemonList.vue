@@ -47,6 +47,7 @@ export default {
 </script>
 
 <style scoped>
+/* https://codepen.io/simeydotme/pen/PrQKgo <------- CSS Source code for Poke Cards */
 .pokemon-list-wrapper {
     margin: 10px;
 }

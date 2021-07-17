@@ -14,13 +14,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Pagination',
   methods: {
-    onPageChanged () {
-      //
+    ...mapActions({
+      getList: 'pokemontcg/getList',
+      setPaginationPage: 'pokemontcg/setPaginationPage'
+    }),
+    onPageChanged (page) {
+      this.setPaginationPage(page).then(() => {
+        this.getList()
+      })
     }
   },
   computed: {

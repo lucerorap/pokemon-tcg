@@ -41,7 +41,7 @@ export default {
   methods: {
     ...mapActions({
       getList: 'pokemontcg/getList',
-      setSearchParam: 'pokemontcg/setSearchParam'
+      setFilterParam: 'pokemontcg/setFilterParam'
     }),
     filter (e, type) {
       const searchParamData = {
@@ -49,7 +49,7 @@ export default {
         type
       }
 
-      this.setSearchParam(searchParamData).then(() => {
+      this.setFilterParam(searchParamData).then(() => {
         this.getList()
       })
     },

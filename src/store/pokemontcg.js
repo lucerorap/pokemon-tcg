@@ -13,7 +13,7 @@ export default {
       rarities: '',
       sets: ''
     },
-    query_params: {
+    pagination: {
       page: 1,
       pageSize: 20
     }
@@ -45,9 +45,6 @@ export default {
     setSets (state, response) {
       state.sets = response
     },
-    setSearch (state, response) {
-      state.query_params.q = response
-    },
     setFilterParamSearch (state, response) {
       state.filter_params.search = response
     },
@@ -59,6 +56,9 @@ export default {
     },
     setFilterParamSets (state, response) {
       state.filter_params.sets = response
+    },
+    setPaginationPage (state, response) {
+      state.pagination.page = response
     }
   },
   actions: {
@@ -69,15 +69,33 @@ export default {
             (state.filter_params.types !== null ? state.filter_params.types + ' ' : '') + // Filter by type
             (state.filter_params.rarities !== '' ? state.filter_params.rarities + ' ' : '') + // Filter by rarity
             (state.filter_params.sets), // Filter by set
-        page: state.query_params.page,
-        pageSize: state.query_params.pageSize
+        page: state.pagination.page,
+        pageSize: state.pagination.pageSize
       }
       const response = await axios.get('https://api.pokemontcg.io/v2/cards/', { params })
 
       console.log('cards', response)
       commit('setList', response.data)
     },
-    setSearchParam ({ commit, state }, searchParamData) {
+    async getTypes ({ commit }) {
+      const response = await axios.get('https://api.pokemontcg.io/v2/types')
+
+      console.log('types', response)
+      commit('setTypes', response.data.data)
+    },
+    async getRarities ({ commit }) {
+      const response = await axios.get('https://api.pokemontcg.io/v2/rarities')
+
+      commit('setRarities', response.data.data)
+    },
+    async getSets ({ commit }) {
+      const response = await axios.get('https://api.pokemontcg.io/v2/sets')
+
+      console.log('sets', response.data.data)
+      commit('setSets', response.data.data)
+    },
+    setFilterParam ({ commit }, searchParamData) {
+      commit('setPaginationPage', 1) // Set to page 1 when filtering
       switch (searchParamData.type) {
         case 'search': {
           if (searchParamData.data === '' || searchParamData.data === null) {
@@ -110,22 +128,8 @@ export default {
         }
       }
     },
-    async getTypes ({ commit }) {
-      const response = await axios.get('https://api.pokemontcg.io/v2/types')
-
-      console.log('types', response)
-      commit('setTypes', response.data.data)
-    },
-    async getRarities ({ commit }) {
-      const response = await axios.get('https://api.pokemontcg.io/v2/rarities')
-
-      commit('setRarities', response.data.data)
-    },
-    async getSets ({ commit }) {
-      const response = await axios.get('https://api.pokemontcg.io/v2/sets')
-
-      console.log('sets', response.data.data)
-      commit('setSets', response.data.data)
+    setPaginationPage ({ commit }, page) {
+      return commit('setPaginationPage', page)
     }
   }
 }
