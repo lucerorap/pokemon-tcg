@@ -18,7 +18,6 @@
         </div> -->
         <b-row class="demo" v-if="list !== null">
             <b-col cols="12" sm="3" class="my-1" v-for="card in list.data" :key="card.id">
-                <!-- <h3>{{ card.name }}</h3> -->
                 <div class="card-poke" :style="{ 'background-image': 'url('+card.images.small+')' }"></div>
             </b-col>
         </b-row>

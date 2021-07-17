@@ -1,5 +1,5 @@
 <template>
-    <b-row>
+    <b-row class="pull-right mt-4 mb-5">
         <b-col md="6" class="my-1" v-if="list !== null">
             <b-pagination
                 @change="onPageChanged"

@@ -5,8 +5,11 @@ import store from './store'
 import BoostrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 require('@/store/subscriber')
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
