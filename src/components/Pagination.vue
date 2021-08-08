@@ -19,7 +19,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Pagination',
   props: {
-    list: Array
+    list: Object
   },
   methods: {
     ...mapActions({

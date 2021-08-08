@@ -10,7 +10,7 @@
 export default {
   name: 'PokemonGridView',
   props: {
-    list: Array
+    list: Object
   }
 }
 </script>
