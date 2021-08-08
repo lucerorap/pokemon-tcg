@@ -21,7 +21,7 @@
                 <div class="card-poke" :style="{ 'background-image': 'url('+card.images.small+')' }"></div>
             </b-col>
         </b-row>
-        <Pagination />
+        <Pagination :list="list" />
     </b-container>
 </template>
 

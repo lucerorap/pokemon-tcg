@@ -14,10 +14,13 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Pagination',
+  props: {
+    list: Array
+  },
   methods: {
     ...mapActions({
       getList: 'pokemontcg/getList',
@@ -28,11 +31,11 @@ export default {
         this.getList()
       })
     }
-  },
-  computed: {
-    ...mapGetters({
-      list: 'pokemontcg/list'
-    })
   }
+  // computed: {
+  //   ...mapGetters({
+  //     list: 'pokemontcg/list'
+  //   })
+  // }
 }
 </script>
