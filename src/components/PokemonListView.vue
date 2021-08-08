@@ -11,7 +11,7 @@
                 </span>
             </template>
             <template #cell(actions)>
-                <b-button @click="viewPokemon">View</b-button>
+                <b-button variant="primary" size="sm" @click="viewPokemon">View</b-button>
             </template>
         </b-table>
     </div>

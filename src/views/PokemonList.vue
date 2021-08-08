@@ -44,7 +44,7 @@ export default {
   },
   data () {
     return {
-      pokemonview: 'List',
+      pokemonview: 'Grid',
       fields: [
         {
           key: 'name',

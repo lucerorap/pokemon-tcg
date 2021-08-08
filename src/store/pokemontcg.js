@@ -62,6 +62,9 @@ export default {
     },
     setPaginationPage (state, response) {
       state.pagination.page = response
+    },
+    setPaginationPageSize (state, response) {
+      state.pagination.pageSize = response
     }
   },
   actions: {
@@ -133,6 +136,9 @@ export default {
     },
     setPaginationPage ({ commit }, page) {
       return commit('setPaginationPage', page)
+    },
+    setPaginationPageSize ({ commit }, pageSize) {
+      return commit('setPaginationPageSize', pageSize)
     },
     resetFilterParams ({ commit }, filtersParams) {
       return commit('setFilterParam', filtersParams)

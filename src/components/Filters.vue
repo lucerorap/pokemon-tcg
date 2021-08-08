@@ -6,6 +6,14 @@
           @change="$emit('change-view', $event.value)"
         />
       </div>
+      <div class="filters" @change="setPageSize($event)">
+        Show:
+        <select >
+          <option value='8'>8</option>
+          <option value='20' selected>20</option>
+          <option value='36'>36</option>
+        </select>
+      </div>
       <div class="filters">
           Search by Name: <input @keyup="searchTimeOut($event, 'search')" type="text" name="search" v-model="filters.search" />
       </div>
@@ -85,7 +93,8 @@ export default {
     ...mapActions({
       getList: 'pokemontcg/getList',
       setFilterParam: 'pokemontcg/setFilterParam',
-      resetFilterParams: 'pokemontcg/resetFilterParams'
+      resetFilterParams: 'pokemontcg/resetFilterParams',
+      setPaginationPageSize: 'pokemontcg/setPaginationPageSize'
     }),
     filter (e, type) {
       const searchParamData = {
@@ -94,6 +103,11 @@ export default {
       }
 
       this.setFilterParam(searchParamData).then(() => {
+        this.getList()
+      })
+    },
+    setPageSize (e) {
+      this.setPaginationPageSize(e.target.value).then(() => {
         this.getList()
       })
     },
@@ -155,7 +169,7 @@ select, input {
     border: #41b883 1px solid;
 }
 .filters {
-    padding: 20px;
+    padding: 5px;
     display: inline;
 }
 </style>
