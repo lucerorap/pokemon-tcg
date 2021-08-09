@@ -10,9 +10,9 @@
                    {{ type.toUpperCase() }}
                 </span>
             </template>
-            <template #cell(actions)>
+            <!-- <template #cell(actions)>
                 <b-button variant="primary" size="sm" @click="viewPokemon">View</b-button>
-            </template>
+            </template> -->
         </b-table>
     </div>
 </template>

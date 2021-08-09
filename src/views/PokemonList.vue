@@ -1,6 +1,5 @@
 <template>
     <b-container>
-        <Filters @change-view="changePokemonView" />
         <!-- <div class="pokemon-list-wrapper">
             <div class="card-wrapper" v-if="list !== null">
                 <div v-for="card in list.data" :key="card.id" >
@@ -21,6 +20,7 @@
                 <div class="card-poke" :style="{ 'background-image': 'url('+card.images.small+')' }"></div>
             </b-col>
         </b-row> -->
+        <Filters @change-view="changePokemonView" />
         <PokemonListView v-if="pokemonview === 'List'" :fields="fields" :list="list" />
         <PokemonGridView v-if="pokemonview === 'Grid'" :list="list" />
         <Pagination :list="list" />
@@ -66,8 +66,8 @@ export default {
         {
           key: 'level',
           sortable: true
-        },
-        'actions'
+        }
+        // 'actions'
       ]
     }
   },
